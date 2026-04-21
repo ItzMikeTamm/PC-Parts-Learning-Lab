@@ -8,6 +8,7 @@ public class InteractCorrectPart : MonoBehaviour
     public string nextSceneName;
 
     private bool playerNear = false;
+    private bool hasInteracted = false;
 
     void Start()
     {
@@ -16,8 +17,9 @@ public class InteractCorrectPart : MonoBehaviour
 
     void Update()
     {
-        if (playerNear && Input.GetKeyDown(KeyCode.E))
+        if (playerNear && !hasInteracted && Input.GetKeyDown(KeyCode.E))
         {
+            hasInteracted = true;
             messageUI.SetActive(true);
 
             if (questionUI != null)
@@ -47,7 +49,6 @@ public class InteractCorrectPart : MonoBehaviour
         if (other.CompareTag("Player"))
         {
             playerNear = false;
-            messageUI.SetActive(false);
         }
     }
 }

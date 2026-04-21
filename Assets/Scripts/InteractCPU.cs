@@ -6,6 +6,7 @@ public class InteractCPU : MonoBehaviour
     public GameObject messageUI;
     public GameObject questionUI;
     private bool playerNear = false;
+    private bool hasInteracted = false;
 
     void Start()
     {
@@ -14,8 +15,9 @@ public class InteractCPU : MonoBehaviour
 
     void Update()
     {
-        if (playerNear && Input.GetKeyDown(KeyCode.E))
+        if (playerNear && !hasInteracted && Input.GetKeyDown(KeyCode.E))
         {
+            hasInteracted = true;
             messageUI.SetActive(true);
 
             if (questionUI != null)
@@ -23,7 +25,7 @@ public class InteractCPU : MonoBehaviour
                 questionUI.SetActive(false);
             }
 
-            Invoke("LoadNextLevel", 2f); // wait 2 seconds
+            Invoke("LoadNextLevel", 2f);
         }
     }
 
@@ -45,7 +47,6 @@ public class InteractCPU : MonoBehaviour
         if (other.CompareTag("Player"))
         {
             playerNear = false;
-            messageUI.SetActive(false);
         }
     }
 }

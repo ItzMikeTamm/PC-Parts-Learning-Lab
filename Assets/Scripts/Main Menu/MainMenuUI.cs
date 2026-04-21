@@ -14,6 +14,11 @@ public class MainMenuUI : MonoBehaviour
         SceneManager.LoadScene("Level1");
     }
 
+    public void OpenSettings()
+    {
+        SceneManager.LoadScene("Settings");
+    }
+
     public void QuitGame()
     {
 #if UNITY_EDITOR
